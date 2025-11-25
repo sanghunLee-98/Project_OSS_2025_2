@@ -4,7 +4,7 @@ class Calculator:
     def __init__(self, root):
         self.root = root
         self.root.title("계산기")
-        self.root.geometry("300x400")
+        self.root.geometry("300x420")
 
         self.expression = ""
 
