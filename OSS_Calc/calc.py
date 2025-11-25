@@ -4,7 +4,7 @@ import tkinter as tk
 class Calculator:
     def __init__(self, root):
         self.root = root
-        self.root.title("계산기")
+        self.root.title("계산기")///
         self.root.geometry("300x400")
 
         self.expression = ""
