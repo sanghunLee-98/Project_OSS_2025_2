@@ -1,6 +1,5 @@
 import tkinter as tk
 
-
 class Calculator:
     def __init__(self, root):
         self.root = root
@@ -9,12 +8,13 @@ class Calculator:
 
         self.expression = ""
 
+       
         self.entry = tk.Entry(root, font=("Arial", 24), justify="right")
         self.entry.pack(fill="both", ipadx=8, ipady=15, padx=10, pady=10)
 
-        # 새로 추가한 기능 버튼: x², 1/x, |x|
+      
         buttons = [
-            ['x²', '1/x', '|x|', 'C'],
+            ['x²', '1/x', '|x|', 'C'],  
             ['7', '8', '9', '/'],
             ['4', '5', '6', '*'],
             ['1', '2', '3', '-'],
@@ -37,7 +37,7 @@ class Calculator:
         if char == 'C':
             self.expression = ""
 
-        # 새 기능: 제곱
+        # 새 기능: 제곱(x²)
         elif char == 'x²':
             try:
                 if self.expression == "":
@@ -47,7 +47,7 @@ class Calculator:
             except Exception:
                 self.expression = "error"
 
-        # 새 기능: 역수
+        # 새 기능: 역수(1/x)
         elif char == '1/x':
             try:
                 if self.expression == "":
@@ -57,7 +57,7 @@ class Calculator:
             except Exception:
                 self.expression = "error"
 
-        # 새 기능: 절댓값
+        # 새 기능: 절댓값(|x|) 
         elif char == '|x|':
             try:
                 if self.expression == "":
@@ -67,6 +67,7 @@ class Calculator:
             except Exception:
                 self.expression = "error"
 
+        # 기존 = 연산
         elif char == '=':
             try:
                 self.expression = str(eval(self.expression))
@@ -76,5 +77,6 @@ class Calculator:
         else:
             self.expression += str(char)
 
+        # 결과 출력
         self.entry.delete(0, tk.END)
         self.entry.insert(tk.END, self.expression)
