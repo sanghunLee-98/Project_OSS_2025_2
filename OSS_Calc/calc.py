@@ -1,4 +1,5 @@
 import tkinter as tk
+import random #랜덤숫자 모듈
 
 class Calculator:
     def __init__(self, root):
@@ -8,17 +9,15 @@ class Calculator:
 
         self.expression = ""
 
-       
         self.entry = tk.Entry(root, font=("Arial", 24), justify="right")
         self.entry.pack(fill="both", ipadx=8, ipady=15, padx=10, pady=10)
 
-      
         buttons = [
-            ['x²', '1/x', '|x|', 'C'],  
             ['7', '8', '9', '/'],
             ['4', '5', '6', '*'],
             ['1', '2', '3', '-'],
-            ['0', '.', '=', '+']
+            ['0', '.', 'C', '+'],
+            ['=', 'Rand']   # 랜덤 버튼 추가
         ]
 
         for row in buttons:
@@ -37,46 +36,17 @@ class Calculator:
         if char == 'C':
             self.expression = ""
 
-        # 새 기능: 제곱(x²)
-        elif char == 'x²':
-            try:
-                if self.expression == "":
-                    return
-                value = eval(self.expression)
-                self.expression = str(value ** 2)
-            except Exception:
-                self.expression = "error"
-
-        # 새 기능: 역수(1/x)
-        elif char == '1/x':
-            try:
-                if self.expression == "":
-                    return
-                value = eval(self.expression)
-                self.expression = str(1 / float(value))
-            except Exception:
-                self.expression = "error"
-
-        # 새 기능: 절댓값(|x|) 
-        elif char == '|x|':
-            try:
-                if self.expression == "":
-                    return
-                value = eval(self.expression)
-                self.expression = str(abs(float(value)))
-            except Exception:
-                self.expression = "error"
-
-        # 기존 = 연산
         elif char == '=':
             try:
                 self.expression = str(eval(self.expression))
-            except Exception:
+            except:
                 self.expression = "error"
+
+        elif char == 'Rand':
+            self.expression = str(random.randint(0, 100)) # 0~100 사이의 정수를 생성하여 출력
 
         else:
             self.expression += str(char)
 
-        # 결과 출력
         self.entry.delete(0, tk.END)
         self.entry.insert(tk.END, self.expression)
